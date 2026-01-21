@@ -22,7 +22,10 @@ export default function Mobile() {
       const form = new FormData();
       form.append("file", file);
 
-      const res = await fetch(`http://${window.location.hostname}:5000/upload/${session}`, {
+      const BACKEND = import.meta.env.VITE_BACKEND_URL;
+
+const res = await fetch(`${BACKEND}/upload/${session}`, {
+
         method: "POST",
         body: form
       });
