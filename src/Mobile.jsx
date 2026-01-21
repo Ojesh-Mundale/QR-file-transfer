@@ -62,7 +62,7 @@ const res = await fetch(`${BACKEND}/upload/${session}`, {
           <h1 className="text-4xl font-bold text-white mb-2 tracking-tight drop-shadow-lg">
             QuickTransfer
           </h1>
-          <p className="text-white/90">Upload files to your PC</p>
+          <p className="text-white/90">Upload files to your Computer</p>
         </div>
 
         {/* Main Card */}
@@ -74,7 +74,7 @@ const res = await fetch(`${BACKEND}/upload/${session}`, {
               {/* Upload Area */}
               <div className="text-center">
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">Select File</h2>
-                <p className="text-gray-600 text-sm mb-6">Choose a file to send to your PC</p>
+                <p className="text-gray-600 text-sm mb-6">Choose a file to send to your Computer</p>
                 
                 <label 
                   htmlFor="file-upload" 
@@ -177,7 +177,7 @@ const res = await fetch(`${BACKEND}/upload/${session}`, {
               {/* Instructions */}
               <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
                 <p className="text-sm text-blue-800">
-                  <span className="font-semibold">Next step:</span> Go to your PC and click "Check for Files" to download
+                  <span className="font-semibold">Next step:</span> Go to your Computer and click "Check for Files" to download
                 </p>
               </div>
 
@@ -197,7 +197,7 @@ const res = await fetch(`${BACKEND}/upload/${session}`, {
 
         {/* Footer Note */}
         <p className="text-center text-white/80 text-xs mt-4">
-          Make sure your PC and mobile are on the same network
+          
         </p>
 
       </div>

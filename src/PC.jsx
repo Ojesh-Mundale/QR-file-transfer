@@ -48,7 +48,7 @@ const FRONTEND = window.location.origin;
         alert("Error checking for file.");
       }
     } catch (err) {
-      alert("Network error. Make sure the backend is running.");
+      alert("Network error. Please try again after sometime.");
     }
     setChecking(false);
   };
