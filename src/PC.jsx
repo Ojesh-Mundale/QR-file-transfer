@@ -10,7 +10,9 @@ export default function PC() {
   const [timeLeft, setTimeLeft] = useState(600);
   const [checking, setChecking] = useState(false);
 
-  const host = window.location.hostname;
+  const BACKEND = import.meta.env.VITE_BACKEND_URL;
+const FRONTEND = window.location.origin;
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,7 +34,7 @@ export default function PC() {
   const checkForFile = async () => {
     setChecking(true);
     try {
-      const res = await fetch(`http://${host}:5000/file/${session}`);
+      const res = await fetch(`${BACKEND}/file/${session}`);
       if (res.ok) {
         const blob = await res.blob();
         const fileNameFromHeader = res.headers.get("X-File-Name");
@@ -75,7 +77,8 @@ export default function PC() {
     }
   };
 
-  const qrUrl = `http://${host}:5173/?mobile=true&session=${session}`;
+  const qrUrl = `${FRONTEND}/?mobile=true&session=${session}`;
+
 
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
