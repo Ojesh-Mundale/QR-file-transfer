@@ -23,7 +23,10 @@ app.post("/upload/:session", upload.single("file"), (req, res) => {
     return res.status(400).send("No file uploaded");
   }
 
-  sessions[req.params.session] = req.file;
+  if (!sessions[req.params.session]) {
+    sessions[req.params.session] = [];
+  }
+  sessions[req.params.session].push(req.file);
 
   res.json({ success: true });
 });
@@ -32,11 +35,13 @@ app.post("/upload/:session", upload.single("file"), (req, res) => {
  * PC → FETCH FILE
  */
 app.get("/file/:session", (req, res) => {
-  const file = sessions[req.params.session];
+  const files = sessions[req.params.session];
 
-  if (!file) {
+  if (!files || files.length === 0) {
     return res.sendStatus(404);
   }
+
+  const file = files.shift(); // Get and remove the first file
 
   res.setHeader("Content-Type", file.mimetype);
   res.setHeader(
@@ -47,8 +52,10 @@ app.get("/file/:session", (req, res) => {
 
   res.send(file.buffer);
 
-  // auto-delete after send
-  delete sessions[req.params.session];
+  // If no more files, delete the session
+  if (files.length === 0) {
+    delete sessions[req.params.session];
+  }
 });
 
 /**

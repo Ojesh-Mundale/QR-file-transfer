@@ -69,10 +69,14 @@ const FRONTEND = window.location.origin;
   const handlePrint = () => {
     if (fileBlob) {
       const url = URL.createObjectURL(fileBlob);
-      const printWindow = window.open(url);
-      printWindow.onload = () => {
-        printWindow.print();
-        printWindow.close();
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = url;
+      document.body.appendChild(iframe);
+      iframe.onload = () => {
+        iframe.contentWindow.print();
+        document.body.removeChild(iframe);
+        URL.revokeObjectURL(url);
       };
     }
   };
@@ -230,13 +234,36 @@ const FRONTEND = window.location.origin;
                       <Download className="w-5 h-5" />
                       Download File
                     </button>
-                    
+
                     <button
                       onClick={handlePrint}
                       className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
                     >
                       <Printer className="w-5 h-5" />
                       Print File
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setFileReady(false);
+                        setFileBlob(null);
+                        setFileName("");
+                        checkForFile();
+                      }}
+                      disabled={checking}
+                      className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                      {checking ? (
+                        <>
+                          <Loader className="w-5 h-5 animate-spin" />
+                          Checking...
+                        </>
+                      ) : (
+                        <>
+                          <RefreshCw className="w-5 h-5" />
+                          Check for Another File
+                        </>
+                      )}
                     </button>
                   </div>
 
