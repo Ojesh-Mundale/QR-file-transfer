@@ -196,8 +196,8 @@ const res = await fetch(`${BACKEND}/upload/${session}`, {
         </div>
 
         {/* Footer Note */}
-        <p className="text-center text-white/80 text-xs mt-4">
-          
+        <p className="text-center text-white/100 text-xl mt-4">
+         <h1> Made with ❤️ by Ojesh</h1>
         </p>
 
       </div>

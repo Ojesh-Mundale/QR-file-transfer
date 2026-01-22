@@ -274,13 +274,12 @@ const FRONTEND = window.location.origin;
             </div>
 
           </div>
+           <p className="text-center text-white/100 text-xl mt-4">
+          Made with ❤️ by Ojesh
+        </p>
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="text-center py-2 text-black text-sm typewriter bg-white rounded-t-lg shadow-lg">
-        Made with ❤️ by Ojesh
-      </div>
 
       <style>{`
         @keyframes fade-in {
